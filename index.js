@@ -1,13 +1,15 @@
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
-const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/download', express.static(path.join(__dirname, 'dist')));
+// সরাসরি অন্য লিংক থেকে APK ডাউনলোড করার ব্যবস্থা
+app.get('/download/CarromAutoplay.apk', (req, res) => {
+  res.redirect('এখানে আপনার APK ফাইলের গুগল ড্রাইভ বা সরাসরি ডাউনলোড লিংক দিন');
+});
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
